@@ -1,0 +1,799 @@
+object ClientMain: TClientMain
+  Left = 0
+  Top = 0
+  ClientHeight = 703
+  ClientWidth = 412
+  FormFactor.Width = 1440
+  FormFactor.Height = 900
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 3
+  object TopToolBar: TToolBar
+    Anchors = []
+    Size.Width = 412.000000000000000000
+    Size.Height = 48.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object ToolBarLabel: TLabel
+      Action = TitleAction
+      Align = Contents
+      Enabled = True
+      Size.Width = 412.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'toollabel'
+      TextSettings.HorzAlign = Center
+    end
+    object btnBack: TSpeedButton
+      Action = PreviousTabAction1
+      Align = Left
+      ControlType = Platform
+      Enabled = True
+      ImageIndex = -1
+      Size.Width = 89.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'toolbuttonleft'
+      Text = 'Settings'
+    end
+    object btnNext: TSpeedButton
+      Action = NextTabAction1
+      Align = MostRight
+      Enabled = True
+      ImageIndex = -1
+      Position.X = 364.000000000000000000
+      Size.Width = 48.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'nexttoolbutton'
+    end
+  end
+  object TabControl1: TTabControl
+    Align = Client
+    FullSize = True
+    Size.Width = 412.000000000000000000
+    Size.Height = 607.000000000000000000
+    Size.PlatformDefault = False
+    TabHeight = 49.000000000000000000
+    TabIndex = 0
+    TabOrder = 1
+    TabPosition = Top
+    Sizes = (
+      412s
+      558s
+      412s
+      558s)
+    object TabItem1: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = True
+      Size.Width = 206.000000000000000000
+      Size.Height = 49.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'Connection settings'
+      ExplicitSize.cx = 8.000000000000000000
+      ExplicitSize.cy = 8.000000000000000000
+      object VertScrollBox1: TVertScrollBox
+        Align = Client
+        Size.Width = 412.000000000000000000
+        Size.Height = 558.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Viewport.Width = 412.000000000000000000
+        Viewport.Height = 558.000000000000000000
+        object Layout1: TLayout
+          Align = Top
+          Size.Width = 412.000000000000000000
+          Size.Height = 145.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          object edConnectionName: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            Align = Top
+            TabOrder = 0
+            ControlType = Platform
+            Position.X = 3.000000000000000000
+            Position.Y = 3.000000000000000000
+            Margins.Left = 3.000000000000000000
+            Margins.Top = 3.000000000000000000
+            Margins.Right = 3.000000000000000000
+            Margins.Bottom = 3.000000000000000000
+            Size.Width = 406.000000000000000000
+            Size.Height = 32.000000000000000000
+            Size.PlatformDefault = False
+            TextPrompt = 'Connection name'
+          end
+          object edClientID: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            Align = Top
+            TabOrder = 1
+            Text = 'Client-'
+            Position.Y = 78.000000000000000000
+            Margins.Top = 3.000000000000000000
+            Margins.Bottom = 3.000000000000000000
+            Size.Width = 412.000000000000000000
+            Size.Height = 32.000000000000000000
+            Size.PlatformDefault = False
+            object EditButton1: TEditButton
+              Cursor = crArrow
+              Size.Width = 28.000000000000000000
+              Size.Height = 28.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 0
+              Text = '...'
+              OnClick = EditButton1Click
+            end
+          end
+          object Layout3: TLayout
+            Align = Top
+            Padding.Left = 3.000000000000000000
+            Padding.Right = 3.000000000000000000
+            Position.Y = 38.000000000000000000
+            Size.Width = 412.000000000000000000
+            Size.Height = 37.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 3
+            object edHost: TEdit
+              Touch.InteractiveGestures = [LongTap, DoubleTap]
+              Align = Left
+              StyleLookup = 'editstyle'
+              TabOrder = 0
+              Text = '192.168.0.104'
+              Position.X = 43.000000000000000000
+              Position.Y = 5.000000000000000000
+              Margins.Left = 3.000000000000000000
+              Margins.Top = 5.000000000000000000
+              Margins.Right = 3.000000000000000000
+              Margins.Bottom = 5.000000000000000000
+              Size.Width = 150.000000000000000000
+              Size.Height = 32.000000000000000000
+              Size.PlatformDefault = False
+              TextPrompt = 'Host name or IP address'
+            end
+            object edPort: TEdit
+              Touch.InteractiveGestures = [LongTap, DoubleTap]
+              Align = Right
+              StyleLookup = 'editstyle'
+              TabOrder = 1
+              Text = '1883'
+              Position.X = 317.000000000000000000
+              Position.Y = 5.000000000000000000
+              Margins.Left = 3.000000000000000000
+              Margins.Top = 5.000000000000000000
+              Margins.Right = 3.000000000000000000
+              Margins.Bottom = 5.000000000000000000
+              Size.Width = 89.000000000000000000
+              Size.Height = 32.000000000000000000
+              Size.PlatformDefault = False
+              TextPrompt = 'Port'
+            end
+            object Label3: TLabel
+              Align = Right
+              StyledSettings = [Family, Style, FontColor]
+              Padding.Top = 3.000000000000000000
+              Padding.Bottom = 3.000000000000000000
+              Position.X = 277.000000000000000000
+              Size.Width = 37.000000000000000000
+              Size.Height = 37.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Size = 14.000000000000000000
+              Text = 'Port:'
+              TabOrder = 3
+            end
+            object Label4: TLabel
+              Align = Left
+              StyledSettings = [Family, Style, FontColor]
+              Padding.Left = 3.000000000000000000
+              Padding.Top = 3.000000000000000000
+              Padding.Bottom = 3.000000000000000000
+              Position.X = 3.000000000000000000
+              Size.Width = 37.000000000000000000
+              Size.Height = 37.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Size = 14.000000000000000000
+              Text = 'Host:'
+              TabOrder = 2
+            end
+          end
+          object Layout4: TLayout
+            Align = Top
+            Position.Y = 113.000000000000000000
+            Size.Width = 412.000000000000000000
+            Size.Height = 28.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 2
+            object chCleanSession: TCheckBox
+              Align = Left
+              StyledSettings = [Family, Style, FontColor]
+              Size.Width = 99.000000000000000000
+              Size.Height = 28.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 0
+              Text = 'Clean session'
+              TextSettings.Font.Size = 14.000000000000000000
+            end
+            object chAutoconnect: TCheckBox
+              Align = Left
+              StyledSettings = [Family, Style, FontColor]
+              Position.X = 99.000000000000000000
+              Size.Width = 120.000000000000000000
+              Size.Height = 28.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 1
+              Text = 'Autoconnection'
+              TextSettings.Font.Size = 14.000000000000000000
+            end
+            object Edit1: TEdit
+              Touch.InteractiveGestures = [LongTap, DoubleTap]
+              Align = MostRight
+              TabOrder = 2
+              Text = '120'
+              Position.X = 344.000000000000000000
+              Position.Y = 3.000000000000000000
+              Margins.Left = 3.000000000000000000
+              Margins.Top = 3.000000000000000000
+              Margins.Right = 3.000000000000000000
+              Margins.Bottom = 3.000000000000000000
+              Size.Width = 65.000000000000000000
+              Size.Height = 32.000000000000000000
+              Size.PlatformDefault = False
+            end
+            object Label5: TLabel
+              Align = Right
+              StyledSettings = [Family, Style, FontColor]
+              Position.X = 256.000000000000000000
+              Size.Width = 85.000000000000000000
+              Size.Height = 28.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Size = 14.000000000000000000
+              Text = 'Keep Alive'
+              TabOrder = 3
+            end
+          end
+        end
+        object Expander1: TExpander
+          Align = Top
+          IsExpanded = False
+          Margins.Left = 3.000000000000000000
+          Margins.Top = 3.000000000000000000
+          Margins.Right = 3.000000000000000000
+          Margins.Bottom = 3.000000000000000000
+          Position.X = 3.000000000000000000
+          Position.Y = 179.000000000000000000
+          ShowCheck = False
+          Size.Width = 406.000000000000000000
+          Size.Height = 25.000000000000000000
+          Size.PlatformDefault = False
+          Text = 'Credentionals'
+          TabOrder = 1
+          OnExpandedChanged = Expander1ExpandedChanged
+          ContentSize = '109'
+          object edUsername: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            Align = Top
+            TabOrder = 3
+            Position.X = 3.000000000000000000
+            Position.Y = 26.000000000000000000
+            Margins.Left = 3.000000000000000000
+            Margins.Top = 3.000000000000000000
+            Margins.Right = 3.000000000000000000
+            Margins.Bottom = 3.000000000000000000
+            Size.Width = 400.000000000000000000
+            Size.Height = 32.000000000000000000
+            Size.PlatformDefault = False
+          end
+          object Label6: TLabel
+            Align = Top
+            StyledSettings = [Family, Style, FontColor]
+            Margins.Left = 3.000000000000000000
+            Margins.Top = 3.000000000000000000
+            Margins.Right = 3.000000000000000000
+            Margins.Bottom = 3.000000000000000000
+            Position.X = 3.000000000000000000
+            Position.Y = 3.000000000000000000
+            Size.Width = 400.000000000000000000
+            Size.Height = 17.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Size = 14.000000000000000000
+            Text = 'User name'
+            TabOrder = 9
+          end
+          object Label7: TLabel
+            Align = Top
+            StyledSettings = [Family, Style, FontColor]
+            Margins.Left = 3.000000000000000000
+            Margins.Top = 3.000000000000000000
+            Margins.Right = 3.000000000000000000
+            Margins.Bottom = 3.000000000000000000
+            Position.X = 3.000000000000000000
+            Position.Y = 64.000000000000000000
+            Size.Width = 400.000000000000000000
+            Size.Height = 17.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Size = 14.000000000000000000
+            Text = 'Password'
+            TabOrder = 8
+          end
+          object edPassword: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            Align = Top
+            TabOrder = 2
+            Password = True
+            Position.X = 3.000000000000000000
+            Position.Y = 87.000000000000000000
+            Margins.Left = 3.000000000000000000
+            Margins.Top = 3.000000000000000000
+            Margins.Right = 3.000000000000000000
+            Margins.Bottom = 3.000000000000000000
+            Size.Width = 400.000000000000000000
+            Size.Height = 32.000000000000000000
+            Size.PlatformDefault = False
+          end
+        end
+        object Expander2: TExpander
+          Align = Top
+          IsExpanded = False
+          Padding.Top = 3.000000000000000000
+          Margins.Left = 3.000000000000000000
+          Margins.Top = 3.000000000000000000
+          Margins.Right = 3.000000000000000000
+          Margins.Bottom = 3.000000000000000000
+          Position.X = 3.000000000000000000
+          Position.Y = 148.000000000000000000
+          ShowCheck = False
+          Size.Width = 406.000000000000000000
+          Size.Height = 25.000000000000000000
+          Size.PlatformDefault = False
+          Text = 'Last Will'
+          TabOrder = 0
+          OnExpandedChanged = Expander2ExpandedChanged
+          ContentSize = '164'
+          object edWillTopic: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            Align = Top
+            TabOrder = 2
+            Position.X = 3.000000000000000000
+            Position.Y = 3.000000000000000000
+            Margins.Left = 3.000000000000000000
+            Margins.Top = 3.000000000000000000
+            Margins.Right = 3.000000000000000000
+            Margins.Bottom = 3.000000000000000000
+            Size.Width = 400.000000000000000000
+            Size.Height = 32.000000000000000000
+            Size.PlatformDefault = False
+            TextPrompt = 'Will Topic'
+          end
+          object Label9: TLabel
+            Align = Top
+            Margins.Left = 3.000000000000000000
+            Margins.Top = 3.000000000000000000
+            Margins.Right = 3.000000000000000000
+            Margins.Bottom = 3.000000000000000000
+            Position.X = 3.000000000000000000
+            Position.Y = 41.000000000000000000
+            Size.Width = 400.000000000000000000
+            Size.Height = 17.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'Will message'
+            TabOrder = 7
+          end
+          object edWillMessage: TMemo
+            Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+            DataDetectorTypes = []
+            Align = Top
+            Margins.Left = 3.000000000000000000
+            Margins.Top = 3.000000000000000000
+            Margins.Right = 3.000000000000000000
+            Margins.Bottom = 3.000000000000000000
+            Position.X = 3.000000000000000000
+            Position.Y = 64.000000000000000000
+            Size.Width = 400.000000000000000000
+            Size.Height = 75.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 8
+            Viewport.Width = 392.000000000000000000
+            Viewport.Height = 67.000000000000000000
+          end
+          object Layout5: TLayout
+            Align = Top
+            Position.Y = 142.000000000000000000
+            Size.Width = 406.000000000000000000
+            Size.Height = 28.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 9
+            object Label10: TLabel
+              Align = MostLeft
+              Margins.Left = 3.000000000000000000
+              Position.X = 3.000000000000000000
+              Size.Width = 62.000000000000000000
+              Size.Height = 28.000000000000000000
+              Size.PlatformDefault = False
+              Text = 'Will QoS'
+              TabOrder = 0
+            end
+            object cbWillQoS: TComboBox
+              Align = Left
+              Items.Strings = (
+                '0 - at most once'
+                '1 - at least once'
+                '2 - exactly once')
+              ItemIndex = 0
+              Margins.Top = 3.000000000000000000
+              Margins.Bottom = 3.000000000000000000
+              Position.X = 65.000000000000000000
+              Position.Y = 3.000000000000000000
+              Size.Width = 128.000000000000000000
+              Size.Height = 32.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 1
+            end
+            object chWillRetain: TCheckBox
+              Align = MostRight
+              Position.X = 286.000000000000000000
+              Size.Width = 120.000000000000000000
+              Size.Height = 28.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 2
+              Text = 'Will retain'
+            end
+          end
+        end
+      end
+    end
+    object TabItem2: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Width = 206.000000000000000000
+      Size.Height = 49.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'Publish'
+      ExplicitSize.cx = 8.000000000000000000
+      ExplicitSize.cy = 8.000000000000000000
+      object VertScrollBox2: TVertScrollBox
+        Align = Client
+        Size.Width = 412.000000000000000000
+        Size.Height = 558.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Viewport.Width = 412.000000000000000000
+        Viewport.Height = 558.000000000000000000
+        object Layout2: TLayout
+          Align = Top
+          Size.Width = 412.000000000000000000
+          Size.Height = 193.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          object Label12: TLabel
+            Align = Top
+            Size.Width = 412.000000000000000000
+            Size.Height = 23.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'Topic'
+            TabOrder = 6
+          end
+          object edTopic: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            Align = Top
+            StyleLookup = 'editstyle'
+            TabOrder = 1
+            Position.X = 3.000000000000000000
+            Position.Y = 26.000000000000000000
+            Margins.Left = 3.000000000000000000
+            Margins.Top = 3.000000000000000000
+            Margins.Right = 3.000000000000000000
+            Margins.Bottom = 3.000000000000000000
+            Size.Width = 406.000000000000000000
+            Size.Height = 32.000000000000000000
+            Size.PlatformDefault = False
+            TextPrompt = 'Message Topic'
+          end
+          object edMessage: TMemo
+            Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+            DataDetectorTypes = []
+            Align = Top
+            Margins.Left = 3.000000000000000000
+            Margins.Top = 3.000000000000000000
+            Margins.Right = 3.000000000000000000
+            Margins.Bottom = 3.000000000000000000
+            Position.X = 3.000000000000000000
+            Position.Y = 89.000000000000000000
+            Size.Width = 406.000000000000000000
+            Size.Height = 59.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = 'memostyle'
+            TabOrder = 7
+            Viewport.Width = 398.000000000000000000
+            Viewport.Height = 51.000000000000000000
+          end
+          object cbQoS: TComboBox
+            Align = Top
+            Items.Strings = (
+              '0 - at most once'
+              '1 - at least once'
+              '2 - exactly once')
+            ItemIndex = 0
+            Margins.Top = 3.000000000000000000
+            Margins.Bottom = 3.000000000000000000
+            Position.Y = 154.000000000000000000
+            Size.Width = 412.000000000000000000
+            Size.Height = 32.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 8
+          end
+          object Label1: TLabel
+            Align = Top
+            Margins.Left = 3.000000000000000000
+            Margins.Right = 3.000000000000000000
+            Position.X = 3.000000000000000000
+            Position.Y = 61.000000000000000000
+            Size.Width = 406.000000000000000000
+            Size.Height = 25.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'Message'
+            TabOrder = 9
+          end
+        end
+        object ListBox1: TListBox
+          Align = Client
+          Margins.Left = 3.000000000000000000
+          Margins.Top = 3.000000000000000000
+          Margins.Right = 3.000000000000000000
+          Margins.Bottom = 3.000000000000000000
+          Size.Width = 406.000000000000000000
+          Size.Height = 279.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          DisableFocusEffect = True
+          DefaultItemStyles.ItemStyle = ''
+          DefaultItemStyles.GroupHeaderStyle = ''
+          DefaultItemStyles.GroupFooterStyle = ''
+          Viewport.Width = 406.000000000000000000
+          Viewport.Height = 279.000000000000000000
+          object ListBoxGroupHeader2: TListBoxGroupHeader
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+            StyledSettings = [Family, Size, FontColor, Other]
+            Size.Width = 406.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = 'listboxplainheader'
+            TabOrder = 0
+            Text = 'Messages'
+          end
+        end
+        object Layout7: TLayout
+          Align = Top
+          Position.Y = 243.000000000000000000
+          Size.Width = 412.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          object Expander3: TExpander
+            Align = Top
+            StyledSettings = [Family, Size, FontColor]
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+            IsExpanded = False
+            Margins.Top = 3.000000000000000000
+            Margins.Bottom = 3.000000000000000000
+            Position.Y = 3.000000000000000000
+            ShowCheck = False
+            Size.Width = 412.000000000000000000
+            Size.Height = 25.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'Subscriptions'
+            TabOrder = 0
+            OnExpandedChanged = Expander3ExpandedChanged
+            ContentSize = '260'
+            object edSubTopic: TEdit
+              Touch.InteractiveGestures = [LongTap, DoubleTap]
+              Align = Top
+              TabOrder = 2
+              ControlType = Platform
+              Position.X = 3.000000000000000000
+              Position.Y = 3.000000000000000000
+              Margins.Left = 3.000000000000000000
+              Margins.Top = 3.000000000000000000
+              Margins.Right = 3.000000000000000000
+              Margins.Bottom = 3.000000000000000000
+              Size.Width = 406.000000000000000000
+              Size.Height = 32.000000000000000000
+              Size.PlatformDefault = False
+              TextPrompt = 'Subscription Topic'
+            end
+            object chSubQoS: TComboBox
+              Align = Top
+              Items.Strings = (
+                '0 - at most once'
+                '1 - at least once'
+                '2 - exactly once')
+              ItemIndex = 0
+              Margins.Left = 3.000000000000000000
+              Margins.Top = 3.000000000000000000
+              Margins.Right = 3.000000000000000000
+              Margins.Bottom = 3.000000000000000000
+              Position.X = 3.000000000000000000
+              Position.Y = 58.000000000000000000
+              Size.Width = 406.000000000000000000
+              Size.Height = 32.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 7
+            end
+            object CornerButton2: TCornerButton
+              Align = Top
+              Margins.Left = 3.000000000000000000
+              Margins.Top = 3.000000000000000000
+              Margins.Right = 3.000000000000000000
+              Margins.Bottom = 3.000000000000000000
+              Position.X = 3.000000000000000000
+              Position.Y = 96.000000000000000000
+              Sides = [Top, Left, Bottom, Right]
+              Size.Width = 406.000000000000000000
+              Size.Height = 38.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 9
+              Text = 'Subscribe'
+              XRadius = 3.000000000000000000
+              YRadius = 3.000000000000000000
+              OnClick = CornerButton2Click
+            end
+            object lstSubscriptions: TListBox
+              Align = Top
+              Margins.Left = 3.000000000000000000
+              Margins.Right = 3.000000000000000000
+              Position.X = 3.000000000000000000
+              Position.Y = 154.000000000000000000
+              Size.Width = 406.000000000000000000
+              Size.Height = 92.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 10
+              DisableFocusEffect = True
+              DefaultItemStyles.ItemStyle = ''
+              DefaultItemStyles.GroupHeaderStyle = ''
+              DefaultItemStyles.GroupFooterStyle = ''
+              Viewport.Width = 406.000000000000000000
+              Viewport.Height = 92.000000000000000000
+            end
+            object Label16: TLabel
+              Align = Top
+              Margins.Left = 3.000000000000000000
+              Position.X = 3.000000000000000000
+              Position.Y = 137.000000000000000000
+              Size.Width = 409.000000000000000000
+              Size.Height = 17.000000000000000000
+              Size.PlatformDefault = False
+              Text = 'Sibscriptions'
+              TabOrder = 11
+            end
+            object btnUnSubscribe: TCornerButton
+              Align = Top
+              Margins.Left = 3.000000000000000000
+              Margins.Right = 3.000000000000000000
+              Position.X = 3.000000000000000000
+              Position.Y = 246.000000000000000000
+              Sides = [Top, Left, Bottom, Right]
+              Size.Width = 406.000000000000000000
+              Size.Height = 29.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 8
+              Text = 'Unsubscribe'
+              XRadius = 3.000000000000000000
+              YRadius = 3.000000000000000000
+            end
+            object Label2: TLabel
+              Align = Top
+              Margins.Left = 3.000000000000000000
+              Position.X = 3.000000000000000000
+              Position.Y = 38.000000000000000000
+              Size.Width = 409.000000000000000000
+              Size.Height = 17.000000000000000000
+              Size.PlatformDefault = False
+              Text = 'QoS'
+              TabOrder = 12
+            end
+          end
+        end
+        object Layout6: TLayout
+          Align = Top
+          Position.Y = 193.000000000000000000
+          Size.Width = 412.000000000000000000
+          Size.Height = 50.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 3
+          object CornerButton1: TCornerButton
+            Align = Center
+            Sides = [Top, Left, Bottom, Right]
+            Size.Width = 158.000000000000000000
+            Size.Height = 49.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            Text = 'Publish'
+            XRadius = 3.000000000000000000
+            YRadius = 3.000000000000000000
+            OnClick = CornerButton1Click
+          end
+          object swRetain: TSwitch
+            Align = Right
+            ControlType = Platform
+            IsChecked = False
+            Margins.Left = 8.000000000000000000
+            Margins.Top = 8.000000000000000000
+            Margins.Right = 8.000000000000000000
+            Margins.Bottom = 8.000000000000000000
+            Position.X = 360.000000000000000000
+            Position.Y = 12.000000000000000000
+            Size.Width = 44.000000000000000000
+            Size.Height = 26.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 1
+          end
+          object Label15: TLabel
+            Align = Right
+            Position.X = 318.000000000000000000
+            Size.Width = 34.000000000000000000
+            Size.Height = 50.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'Retain'
+            TabOrder = 2
+          end
+        end
+      end
+    end
+  end
+  object BottomToolBar: TToolBar
+    Align = Bottom
+    Anchors = [akLeft]
+    Position.Y = 655.000000000000000000
+    Size.Width = 412.000000000000000000
+    Size.Height = 48.000000000000000000
+    Size.PlatformDefault = False
+    StyleLookup = 'bottomtoolbar'
+    TabOrder = 2
+    object CornerButton3: TCornerButton
+      StaysPressed = True
+      Position.X = 19.000000000000000000
+      Position.Y = 5.000000000000000000
+      Sides = [Top, Left, Bottom, Right]
+      Size.Width = 80.000000000000000000
+      Size.Height = 33.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'cornerbuttonstyle'
+      TabOrder = 0
+      Text = 'Connect'
+      XRadius = 3.000000000000000000
+      YRadius = 3.000000000000000000
+      OnClick = CornerButton3Click
+    end
+    object Label11: TLabel
+      Position.X = 112.000000000000000000
+      Position.Y = 16.000000000000000000
+      Size.Width = 281.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+    end
+  end
+  object ActionList1: TActionList
+    Left = 136
+    Top = 64
+    object TitleAction: TControlAction
+      Category = 'Tab'
+      Text = 'TitleAction'
+      OnUpdate = TitleActionUpdate
+    end
+    object PreviousTabAction1: TPreviousTabAction
+      Category = 'Tab'
+      TabControl = TabControl1
+      ShortCut = 137
+    end
+    object NextTabAction1: TNextTabAction
+      Category = 'Tab'
+      TabControl = TabControl1
+    end
+  end
+end

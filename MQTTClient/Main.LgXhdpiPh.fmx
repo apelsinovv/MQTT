@@ -1,0 +1,177 @@
+inherited ClientMain_LgXhdpiPh: TClientMain_LgXhdpiPh
+  ClientHeight = 695
+  ClientWidth = 450
+  OnKeyUp = FormKeyUp
+  DesignerMasterStyle = 0
+  inherited TopToolBar: TToolBar
+    Size.Width = 450.000000000000000000
+    inherited ToolBarLabel: TLabel
+      Size.Width = 450.000000000000000000
+    end
+    inherited btnBack: TSpeedButton
+      Position.Y = 8.000000000000000000
+      Visible = False
+    end
+    inherited btnNext: TSpeedButton
+      Position.X = 402.000000000000000000
+    end
+  end
+  inherited TabControl1: TTabControl
+    Size.Width = 450.000000000000000000
+    Size.Height = 599.000000000000000000
+    Sizes = (
+      450s
+      550s
+      450s
+      550s)
+    inherited TabItem1: TTabItem
+      Size.Width = 225.000000000000000000
+      ExplicitSize.cx = 8.000000000000000000
+      ExplicitSize.cy = 8.000000000000000000
+      inherited VertScrollBox1: TVertScrollBox
+        Size.Width = 450.000000000000000000
+        Size.Height = 550.000000000000000000
+        Viewport.Width = 450.000000000000000000
+        Viewport.Height = 550.000000000000000000
+        inherited Layout1: TLayout
+          Size.Width = 450.000000000000000000
+          inherited edConnectionName: TEdit
+            Size.Width = 444.000000000000000000
+          end
+          inherited edClientID: TEdit
+            Size.Width = 450.000000000000000000
+          end
+          inherited Layout3: TLayout
+            Size.Width = 450.000000000000000000
+          end
+          inherited Layout4: TLayout
+            Size.Width = 450.000000000000000000
+          end
+        end
+        inherited Expander1: TExpander
+          Size.Width = 444.000000000000000000
+          ContentSize = '109'
+          inherited edUsername: TEdit
+            Size.Width = 438.000000000000000000
+          end
+          inherited Label6: TLabel
+            Size.Width = 438.000000000000000000
+          end
+          inherited Label7: TLabel
+            Size.Width = 438.000000000000000000
+          end
+          inherited edPassword: TEdit
+            Size.Width = 438.000000000000000000
+          end
+        end
+        inherited Expander2: TExpander
+          Size.Width = 444.000000000000000000
+          ContentSize = '164'
+          inherited edWillTopic: TEdit
+            Size.Width = 438.000000000000000000
+          end
+          inherited Label9: TLabel
+            Size.Width = 438.000000000000000000
+          end
+          inherited edWillMessage: TMemo
+            Size.Width = 438.000000000000000000
+            Viewport.Width = 438.000000000000000000
+            Viewport.Height = 75.000000000000000000
+          end
+          inherited Layout5: TLayout
+            Size.Width = 444.000000000000000000
+          end
+        end
+      end
+    end
+    inherited TabItem2: TTabItem
+      Size.Width = 225.000000000000000000
+      ExplicitSize.cx = 8.000000000000000000
+      ExplicitSize.cy = 8.000000000000000000
+      inherited VertScrollBox2: TVertScrollBox
+        Size.Width = 450.000000000000000000
+        Size.Height = 550.000000000000000000
+        Viewport.Width = 450.000000000000000000
+        Viewport.Height = 550.000000000000000000
+        inherited Layout2: TLayout
+          Size.Width = 450.000000000000000000
+          inherited Label12: TLabel
+            Position.Y = 38.000000000000000000
+            Size.Width = 450.000000000000000000
+          end
+          inherited edTopic: TEdit
+            Position.Y = 3.000000000000000000
+            Size.Width = 444.000000000000000000
+          end
+          inherited edMessage: TMemo
+            Position.Y = 95.000000000000000000
+            Size.Width = 444.000000000000000000
+            Viewport.Width = 444.000000000000000000
+            Viewport.Height = 59.000000000000000000
+          end
+          inherited cbQoS: TComboBox
+            Position.Y = 160.000000000000000000
+            Size.Width = 450.000000000000000000
+          end
+          inherited Label1: TLabel
+            Margins.Top = 3.000000000000000000
+            Margins.Bottom = 3.000000000000000000
+            Position.Y = 64.000000000000000000
+            Size.Width = 444.000000000000000000
+          end
+        end
+        inherited ListBox1: TListBox
+          Size.Width = 444.000000000000000000
+          Size.Height = 271.000000000000000000
+          Viewport.Width = 444.000000000000000000
+          Viewport.Height = 271.000000000000000000
+          inherited ListBoxGroupHeader2: TListBoxGroupHeader
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+          end
+        end
+        inherited Layout7: TLayout
+          inherited Expander3: TExpander
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+            ContentSize = '200'
+            inherited edSubTopic: TEdit
+              Size.Width = 194.000000000000000000
+            end
+            inherited chSubQoS: TComboBox
+              Size.Width = 194.000000000000000000
+            end
+            inherited CornerButton2: TCornerButton
+              Size.Width = 194.000000000000000000
+            end
+            inherited lstSubscriptions: TListBox
+              Size.Width = 194.000000000000000000
+              Viewport.Width = 194.000000000000000000
+              Viewport.Height = 92.000000000000000000
+            end
+            inherited Label16: TLabel
+              Size.Width = 197.000000000000000000
+            end
+            inherited btnUnSubscribe: TCornerButton
+              Size.Width = 194.000000000000000000
+            end
+            inherited Label2: TLabel
+              Size.Width = 197.000000000000000000
+            end
+          end
+        end
+        inherited Layout6: TLayout
+          Size.Width = 450.000000000000000000
+          inherited swRetain: TSwitch
+            Position.X = 398.000000000000000000
+          end
+          inherited Label15: TLabel
+            Position.X = 356.000000000000000000
+          end
+        end
+      end
+    end
+  end
+  inherited BottomToolBar: TToolBar
+    Position.Y = 647.000000000000000000
+    Size.Width = 450.000000000000000000
+  end
+end
