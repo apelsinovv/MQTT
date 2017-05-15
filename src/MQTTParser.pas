@@ -28,7 +28,7 @@ unit MQTTParser;
 interface
 
 uses
-  Classes, SysUtils, MQTTUtils;
+  Classes, SysUtils, Generics.Collections, MQTTUtils;
 
 const
   MQTT_PROTOCOL = 'MQIsdp';
@@ -71,9 +71,9 @@ type
   TMQTTSubscriptionEvent = procedure(Sender: TObject; aTopic: UTF8String;
     var RequestedQos: TMQTTQOSType) of object;
   TMQTTSubscribeEvent = procedure(Sender: TObject; anID: Word;
-    Topics: TStringList) of object;
+    Topics: TDictionary<UTF8String, Byte>) of object;
   TMQTTUnsubscribeEvent = procedure(Sender: TObject; anID: Word;
-    Topics: TStringList) of object;
+    Topics: TDictionary<UTF8String, Byte>) of object;
   TMQTTSubAckEvent = procedure(Sender: TObject; anID: Word;
     Qoss: array of TMQTTQOSType) of object;
   TMQTTFailureEvent = procedure(Sender: TObject; aReason: integer;
@@ -457,6 +457,7 @@ var
   aStr, bStr: UTF8String;
   Str, wm: Utf8String;
   Strs: TStringList;
+  LDict: TDictionary<UTF8String, Byte>;
   Qoss: array of TMQTTQOSType;
 begin
   while aStream.Position <> aStream.Size do
@@ -616,30 +617,40 @@ begin
                 if FRxStream.Size >= 2 then
                 begin
                   id := ReadByte(FRxStream) * $100 + ReadByte(FRxStream);
-                  Strs := TStringList.Create;
-                  while FRxStream.Size >= FRxStream.Position + 2 do // len
-                  begin
-                    aStr := ReadStr(FRxStream);
-                    Strs.Add(string(aStr));
+                  LDict := TDictionary<UTF8String, Byte>.Create;
+                  try
+//                  Strs := TStringList.Create;
+                    while FRxStream.Size >= FRxStream.Position + 2 do // len
+                    begin
+                      aStr := ReadStr(FRxStream);
+                      LDict.Add(aStr, 0);
+                    end;
+                    if Assigned(FOnUnsubscribe) then
+                      FOnUnsubscribe(Self, id, LDict);
+                  finally
+                    LDict.Free;
                   end;
-                  if Assigned(FOnUnsubscribe) then
-                    FOnUnsubscribe(Self, id, Strs);
-                  Strs.Free;
                 end;
               mtSUBSCRIBE:
                 if FRxStream.Size >= 2 then
                 begin
                   id := ReadByte(FRxStream) * $100 + ReadByte(FRxStream);
-                  Strs := TStringList.Create;
-                  while FRxStream.Size >= FRxStream.Position + 3 do // len + qos
-                  begin
-                    aStr := ReadStr(FRxStream);
-                    x := ReadByte(FRxStream) and $03;
-                    Strs.AddObject(string(aStr), TObject(x));
+                  LDict := TDictionary<UTF8String, Byte>.Create;
+                  try
+//                  Strs := TStringList.Create;
+                    while FRxStream.Size >= FRxStream.Position + 3 do // len + qos
+                    begin
+                      aStr := ReadStr(FRxStream);
+                      x := ReadByte(FRxStream) and $03;
+                      LDict.Add(string(aStr), x);
+  //                    Strs.AddObject(string(aStr), TObject(x));
+                    end;
+                    if Assigned(FOnSubscribe) then
+                      FOnSubscribe(Self, id, LDict);
+                  finally
+                    LDict.Free;
                   end;
-                  if Assigned(FOnSubscribe) then
-                    FOnSubscribe(Self, id, Strs);
-                  Strs.Free;
+//                  Strs.Free;
                 end;
             end;
             FKeepAliveCount := KeepAlive * 10;
@@ -799,18 +810,7 @@ begin
       end;
       LMessage := UTF8Encode(aMessage);
       if Length(LMessage) > 0 then
-      begin
         LStream.Write(LMessage[1], Length(LMessage));
-{
-        LStringStrm := TStringStream.Create(String(aMessage), TEncoding.ANSI);
-        try
-          LStringStrm.Position := 0;
-          LStream.CopyFrom(LStringStrm, LStringStrm.Size);
-        finally
-          LStringStrm.Free;
-        end;
-}
-      end;
       // payload
       LStream.Seek(LongInt(0), soFromBeginning);
       AddLength(LTxStream, LStream.Size);

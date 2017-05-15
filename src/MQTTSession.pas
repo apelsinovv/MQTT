@@ -57,7 +57,7 @@ type
   private
     FOnCheckUser: TOnCheckUser;
     procedure SessinReset; override;
-    procedure OnSubscribe(Sender: TObject; anID: Word; Topics: TStringList);
+    procedure OnSubscribe(Sender: TObject; anID: Word; Topics: TDictionary<UTF8String, Byte>);
     procedure OnPing(Sender: TObject);
     procedure OnDisconnected(Sender: TObject);
     procedure OnPublish(Sender: TObject; aID: Word; aTopic: UTF8String; aMessage: String);
@@ -65,7 +65,7 @@ type
       aClientID, aUserName, aPassword: UTF8String; aKeepAlive: Word; aClean: boolean);
     procedure OnStatus(ASender: TObject; const AStatus: TIdStatus;
    const AStatusText: string);
-    procedure OnUnsubscribe(Sender: TObject; anID: Word; Topics: TStringList);
+    procedure OnUnsubscribe(Sender: TObject; anID: Word; Topics: TDictionary<UTF8String, Byte>);
     procedure OnSetWill(Sender: TObject; aTopic: UTF8String; aMessage: String;
       aQos: TMQTTQOSType; aRetain: boolean);
     procedure OnHeader(Sender: TObject; MsgType: TMQTTMessageType;
@@ -308,7 +308,7 @@ var
 begin
   if FHandler.Opened then
     begin
-      aStream.Seek (0, soFromBeginning);
+      aStream.Seek (LongInt(0), soFromBeginning);
       aStream.Read (x, 1);
       if (TMQTTQOSType((x and $06) shr 1) in [qtAT_LEAST_ONCE, qtEXACTLY_ONCE]) and
          (TMQTTMessageType((x and $f0) shr 4) in [{mtPUBREL,} mtPUBLISH, mtSUBSCRIBE, mtUNSUBSCRIBE]) and
@@ -485,55 +485,58 @@ begin
 end;
 
 procedure TMQTTServerSession.OnSubscribe(Sender: TObject; anID: Word;
-  Topics: TStringList);
+  Topics: TDictionary<UTF8String, Byte>);
 var
-  I: Integer;
+  LQosCounter: Integer;
   LQosArray: array of TMQTTQOSType;
   LMsg: IMessageItem;
   LQoS: TMQTTQOSType;
+  LUTFTopic: UTF8String;
+  LTopic: String;
 begin
+  LQosCounter := 0;
   SetLength(LQosArray, Topics.Count);
-  for I := 0 to Topics.Count -1 do
+  for LUTFTopic in Topics.Keys do
   begin
-    if checkTopic(UTF8Encode(Topics.Strings[I])) then
+    LTopic := UTF8Encode(LUTFTopic);
+    LQoS :=  TMQTTQOSType(Topics.Items[LUTFTopic]);
+    if checkTopic(LUTFTopic) then
     begin
-      if FSubscriptions.ContainsKey(UTF8Encode(Topics.Strings[I])) then
-        FSubscriptions.Remove(UTF8Encode(Topics.Strings[I]));
-      FSubscriptions.Add(UTF8Encode(Topics.Strings[I]), TMQTTQOSType(Topics.Objects[I]));
-      LQosArray[I] := TMQTTQOSType(Topics.Objects[I]);
-      Log(UTF8ToString(FClientID) + '@Subscribed on topic: ' + Topics.Strings[I] + ' QoS: ' + QoSName(TMQTTQOSType(Topics.Objects[I])));
+      if FSubscriptions.ContainsKey(LUTFTopic) then
+        FSubscriptions.Remove(LUTFTopic);
+      FSubscriptions.Add(LUTFTopic, LQoS);
+      LQosArray[LQosCounter] :=LQoS;
+      Log(UTF8ToString(FClientID) + '@Subscribed on topic: ' + LTopic + ' QoS: ' + QoSName(LQoS));
     end else
-      LQosArray[I] := qtFAILURE;
+      LQosArray[LQosCounter] := qtFAILURE;
 
-    LMsg := TMQTTCustomServer(FOwner).GetRetainedMessage(UTF8Encode(Topics.Strings[I]));
+    LMsg := TMQTTCustomServer(FOwner).GetRetainedMessage(LUTFTopic);
     if assigned(LMsg) then
     begin
-      if  TMQTTQOSType(Topics.Objects[I]) < LMsg.QoS then
-        LQos :=  TMQTTQOSType(Topics.Objects[I])
-      else
-       LQos := LMsg.QoS;
-       Log(UTF8ToString(FClientID) + '@Publich retained message on topic: ' + Topics.Strings[I] + ' QoS: ' + QoSName(TMQTTQOSType(Topics.Objects[I])));
-
-       FParser.SendPublish(GetNextMessageID, LMsg.Topic, LMsg.Message, LQos, false, true);
+      if  LQoS >= LMsg.QoS then
+        LQos := LMsg.QoS;
+      Log(UTF8ToString(FClientID) + '@Publich retained message on topic: ' + LTopic + ' QoS: ' + QoSName(LQoS));
+      FParser.SendPublish(GetNextMessageID, LMsg.Topic, LMsg.Message, LQos, false, true);
     end;
+    inc(LQosCounter);
   end;
   FParser.SendSubAck(anID, LQosArray);
 end;
 
 
 procedure TMQTTServerSession.OnUnsubscribe(Sender: TObject; anID: Word;
-  Topics: TStringList);
+  Topics: TDictionary<UTF8String, Byte>);
 var
-  I: Integer;
+  LTopic: UTF8String;
 begin
-  for I := 0 to Topics.Count -1 do
-    if FSubscriptions.ContainsKey(UTF8Encode(Topics.Strings[I])) then
+  for LTopic in Topics.Keys do
+    if FSubscriptions.ContainsKey(LTopic) then
     begin
-      FSubscriptions.Remove(UTF8Encode(Topics.Strings[I]));
-      Log(UTF8ToString(FClientID) + '@Unsubscribed: ' + Topics.Strings[I]);
+      FSubscriptions.Remove(LTopic);
+      Log(UTF8ToString(FClientID) + '@Unsubscribed: ' + UTF8ToString(LTopic));
     end else
       Log(UTF8ToString(FClientID)
-       + '@Unsubscribed: ' + Topics.Strings[I] + ' not found');
+       + '@Unsubscribed: ' + UTF8ToString(LTopic) + ' not found');
   FParser.SendUnsubAck(anID);
 end;
 

@@ -133,10 +133,10 @@ var
   x: byte;
 begin
   if aStream.Size = 0 then exit;
-  aStream.Seek(0, soFromBeginning);
+  aStream.Seek(LongInt(0), soFromBeginning);
   aStream.Read(x, 1);
   x := (x and $F7) or (ord (aState) * $08);
-  aStream.Seek(0, soFromBeginning);
+  aStream.Seek(LongInt(0), soFromBeginning);
   aStream.Write(x, 1);
 end;
 
