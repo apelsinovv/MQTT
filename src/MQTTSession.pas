@@ -346,6 +346,8 @@ begin
     if (aUserName = '') and (aPassword = '') then
       FAllowed := True;
 }
+  Log(format('User %s allowed %s',[aUserName, BoolToStr(FAllowed, True)]));
+
   if FAllowed then
   begin
     if aVersion < MinVersion then
@@ -377,6 +379,7 @@ begin
         Log('Clean ' + ny[aClean]);
         if not aClean then
           SessinReset;
+        Log('Response ConnACK');
         FParser.SendConnAck(rcACCEPTED);
 
         Alive := True;
@@ -443,7 +446,10 @@ begin
     end;
   case FParser.RxQos of
     qtAT_MOST_ONCE  :
+    begin
+//       Log(UTF8ToString(FParser.ClientID) + ' Message ' + IntToStr (aID) + ' processing publish.');
        MessagePublisher.SetItem(LMessage);
+    end;
     qtAT_LEAST_ONCE :
     begin
         FParser.SendPubAck(aID);

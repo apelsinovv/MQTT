@@ -276,6 +276,7 @@ begin
             if LSession.Session.Alive then
             begin
               DoLog(LSession, UTF8ToString(LClientID) + #9 + 'Get CONNECT comand when session alive. Disconnecting.');
+              LSession.Session.Alive := False;
               AContext.Connection.Disconnect;
               exit;
             end else
